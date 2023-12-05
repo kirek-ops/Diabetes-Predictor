@@ -20,9 +20,9 @@ def index ():
         Age = request.form['Age']
         test = [int(Pregnancies), int(BloodPressure), int(Glucose), int(SkinThickness), int(Insulin), int(BMI), int(DiabetesPedigreeFunction), int(Age)]
         test = np.array(test)
-        print(test.shape)
-        # prediction = model.predict(test)
-        # print(prediction)
+        test = test.reshape(1, 8)
+        prediction = model.predict(test)
+        print(prediction)
 
     return render_template('index.html')
 

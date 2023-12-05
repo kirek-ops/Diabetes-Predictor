@@ -19,8 +19,9 @@ X = scaler.fit_transform(X)
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 137)
 
 model = Sequential([
-    Dense(7, activation = 'relu'),
-    Dense(7, activation = 'relu'),
+    Flatten(input_shape = (8,)),
+    Dense(8, activation = 'relu'),
+    Dense(8, activation = 'relu'),
     Dense(6, activation = 'relu'),
     Dense(4, activation = 'relu'),
     Dense(2, activation = 'softmax'),
