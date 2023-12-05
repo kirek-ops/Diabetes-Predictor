@@ -1,12 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Flask Web App</title>
+    <meta charset = "UTF-8">
+    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <title>Diabetes Predictor</title>
 </head>
 <body>
-    <h1>Welcome to My Flask Web App!</h1>
+    <h1>Diabetes Predictor</h1>
+    
+    <form method = "POST" onsubmit = "saveInput()">
+        <label for = "Pregnancies">Pregnancies:</label> 
+        <input type = "text" id = "Pregnancies" name = "Pregnancies"> 
+        <br>
+
+        <label for = "Glucose">Glucose:</label> 
+        <input type = "text" id = "Glucose" name = "Glucose">
+        <br>
+
+        <label for = "SkinThickness">SkinThickness:</label> 
+        <input type = "text" id = "SkinThickness" name = "SkinThickness">
+        <br>
+        
+        <label for = "Insulin">Insulin:</label> 
+        <input type = "text" id = "Insulin" name = "Insulin">
+        <br>
+        
+        <label for = "BMI">BMI:</label> 
+        <input type = "text" id = "BMI" name = "BMI">
+        <br>
+        
+        <label for = "DiabetesPedigreeFunction">DiabetesPedigreeFunction:</label> 
+        <input type = "text" id = "DiabetesPedigreeFunction" name = "DiabetesPedigreeFunction">
+        <br>
+
+        <label for = "Age">Age:</label> 
+        <input type = "text" id = "Age" name = "Age">
+        <br>
+
+        <button type = "submit">Submit</button>     
+    </form>
+
+
+    <script>
+        function saveInput () {
+            const Pregnancies = document.getElementById('Pregnancies').value;
+            const Glucose = document.getElementById('Glucose').value;
+            const SkinThickness = document.getElementById('SkinThickness').value;
+            const Insulin = document.getElementById('Insulin').value;
+            const BMI = document.getElementById('BMI').value;
+            const DiabetesPedigreeFunction = document.getElementById('DiabetesPedigreeFunction').value;
+            const Age = document.getElementById('Age').value;
+
+            localStorage.setItem('savedPregnancies', Pregnancies);
+            localStorage.setItem('savedGlucose', Glucose);
+            localStorage.setItem('savedSkinThickness', SkinThickness);
+            localStorage.setItem('savedInsulin', Insulin);
+            localStorage.setItem('savedBMI', BMI);
+            localStorage.setItem('savedDiabetesPedigreeFunction', DiabetesPedigreeFunction);
+            localStorage.setItem('savedAge', Age);
+        }
+        window.onload = function () {
+            const savedPregnancies = localStorage.getItem('savedPregnancies');
+            const savedGlucose = localStorage.getItem('savedGlucose');
+            const savedSkinThickness = localStorage.getItem('savedSkinThickness');
+            const savedInsulin = localStorage.getItem('savedInsulin');
+            const savedBMI = localStorage.getItem('savedBMI');
+            const savedDiabetesPedigreeFunction = localStorage.getItem('savedDiabetesPedigreeFunction');
+            const savedAge = localStorage.getItem('savedAge');
+            
+            if (savedPregnancies != null) {
+                document.getElementById('Pregnancies').value = savedPregnancies;
+            }
+            if (savedGlucose != null) {
+                document.getElementById('Glucose').value = savedGlucose;
+            }
+            if (savedSkinThickness != null) {
+                document.getElementById('SkinThickness').value = savedSkinThickness;
+            }
+            if (savedInsulin != null) {
+                document.getElementById('Insulin').value = savedInsulin;
+            }
+            if (savedBMI != null) {
+                document.getElementById('BMI').value = savedBMI;
+            }
+            if (savedDiabetesPedigreeFunction != null) {
+                document.getElementById('DiabetesPedigreeFunction').value = savedDiabetesPedigreeFunction;
+            }
+            if (savedAge != null) {
+                document.getElementById('Age').value = savedAge;
+            }
+        };
+    </script>
 </body>
 </html>
