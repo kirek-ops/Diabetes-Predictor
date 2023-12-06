@@ -7,7 +7,9 @@ import numpy as np
 
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
+import joblib
 from sklearn.linear_model import LogisticRegression
 
 # Import Data
@@ -17,14 +19,13 @@ df = pd.read_csv(data_path)
 y = df['Outcome']
 X = df.drop('Outcome', axis = 1)
 
-scaler = MinMaxScaler()
-X = scaler.fit_transform(X)
-
 x_train, x_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
 
-model = LogisticRegression(solver = 'liblinear')
+model = LogisticRegression()
 model.fit(x_train, y_train)
 
 pred = model.predict(x_test)
-ans = np.sum(np.abs(pred - y_test))
-print(ans / len(x_test))
+
+print(accuracy_score(y_test, pred))
+
+joblib.dump(model, "model.joblib")

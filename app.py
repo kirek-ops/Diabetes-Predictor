@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request
-import tensorflow as tf
+# import tensorflow as tf
 import numpy as np
 
 from sklearn.preprocessing import MinMaxScaler
+import joblib
 
 scaler = MinMaxScaler()
 
-model = tf.keras.models.load_model('model.model')
+# model = tf.keras.models.load_model('model.model')
+model = joblib.load("model.joblib")
 
 app = Flask(__name__, template_folder = 'templates')
 
@@ -22,16 +24,12 @@ def index ():
         BMI = request.form['BMI']
         DiabetesPedigreeFunction = request.form['DiabetesPedigreeFunction']
         Age = request.form['Age']
+        
         test = [float(Pregnancies), float(BloodPressure), float(Glucose), float(SkinThickness), float(Insulin), float(BMI), float(DiabetesPedigreeFunction), float(Age)]
         test = np.array(test)
         test = test.reshape(1, 8)
-        test = scaler.transform(test)
-        prediction = model.predict(test)
-        if prediction < 0.5: 
-            result = 0
-        else:
-            result = 1
-        print(result)
+        
+        result = model.predict(test)
 
     return render_template('index.html', data = result)
 
