@@ -1,61 +1,115 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 <head>
-    <meta charset = "UTF-8">
-    <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-    <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diabetes Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
     <h1>Diabetes Predictor</h1>
     
-    <form method = "POST" onsubmit = "saveInput()">
-        <label for = "Pregnancies">Pregnancies:</label> 
-        <input type = "text" id = "Pregnancies" name = "Pregnancies"> 
-        <br>
+    <form method="POST" onsubmit="saveInput()">
+        <label for="Pregnancies">Pregnancies:</label> 
+        <input type="text" id="Pregnancies" name="Pregnancies"> 
 
-        <label for="BloodPressure">BloodPressure:</label>
+        <label for="BloodPressure">Blood Pressure:</label>
         <input type="text" id="BloodPressure" name="BloodPressure">
-        <br>
 
-        <label for = "Glucose">Glucose:</label> 
-        <input type = "text" id = "Glucose" name = "Glucose">
-        <br>
+        <label for="Glucose">Glucose:</label> 
+        <input type="text" id="Glucose" name="Glucose">
 
-        <label for = "SkinThickness">SkinThickness:</label> 
-        <input type = "text" id = "SkinThickness" name = "SkinThickness">
-        <br>
-        
-        <label for = "Insulin">Insulin:</label> 
-        <input type = "text" id = "Insulin" name = "Insulin">
-        <br>
-        
-        <label for = "BMI">BMI:</label> 
-        <input type = "text" id = "BMI" name = "BMI">
-        <br>
-        
-        <label for = "DiabetesPedigreeFunction">DiabetesPedigreeFunction:</label> 
-        <input type = "text" id = "DiabetesPedigreeFunction" name = "DiabetesPedigreeFunction">
-        <br>
+        <label for="SkinThickness">Skin Thickness:</label> 
+        <input type="text" id="SkinThickness" name="SkinThickness">
 
-        <label for = "Age">Age:</label> 
-        <input type = "text" id = "Age" name = "Age">
-        <br>
+        <label for="Insulin">Insulin:</label> 
+        <input type="text" id="Insulin" name="Insulin">
 
-        <button type = "submit">Submit</button>     
+        <label for="BMI">BMI:</label> 
+        <input type="text" id="BMI" name="BMI">
+
+        <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label> 
+        <input type="text" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction">
+
+        <label for="Age">Age:</label> 
+        <input type="text" id="Age" name="Age">
+
+        <button type="submit">Predict</button>
     </form>
 
     {% if data == 1 %}
-        <h1>You have diabete :(</h1>
+        <h2>You have diabetes :(</h2>
     {% elif data == 0 %}
-        <h1>Smile!! You haven't diabete :D</h1>
+        <h2>Smile!! You haven't diabetes :D</h2>
     {% else %}
-        <h1>WTF what do you enter?!</h1>
+        <h2>WTF what did you enter?! Check your inputs and try again.</h2>
     {% endif %}
 
-
     <script>
-        function saveInput () {
+        function saveInput() {
             const Pregnancies = document.getElementById('Pregnancies').value;
             const BloodPressure = document.getElementById('BloodPressure').value;
             const Glucose = document.getElementById('Glucose').value;
@@ -74,6 +128,7 @@
             localStorage.setItem('savedDiabetesPedigreeFunction', DiabetesPedigreeFunction);
             localStorage.setItem('savedAge', Age);
         }
+
         window.onload = function () {
             const savedPregnancies = localStorage.getItem('savedPregnancies');
             const savedBloodPressure = localStorage.getItem('savedBloodPressure');
