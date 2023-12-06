@@ -45,19 +45,14 @@
         <button type = "submit">Submit</button>     
     </form>
 
-    {% if data %}
-        {% if data == 1 %}
-            <p>
-                You have diabete :(
-            </p>
-        {% else %}
-            <p>
-                You haven't diabete :)
-            </p>
-        {% endif %}
+    {% if data == 1 %}
+        <h1>You have diabete :(</h1>
+    {% elif data == 0 %}
+        <h1>Smile!! You haven't diabete :D</h1>
     {% else %}
-        <p>No data available</p>
+        <h1>WTF what do you enter?!</h1>
     {% endif %}
+
 
     <script>
         function saveInput () {
@@ -89,31 +84,30 @@
             const savedDiabetesPedigreeFunction = localStorage.getItem('savedDiabetesPedigreeFunction');
             const savedAge = localStorage.getItem('savedAge');
             
-            // if (savedPregnancies != null) {
-            //     document.getElementById('Pregnancies').value = savedPregnancies;
-            // }
-            // if (savedBloodPressure != null) {
-            //     document.getElementById('BloodPressure').value = savedBloodPressure;
-            // }
-            // if (savedGlucose != null) {
-            //     document.getElementById('Glucose').value = savedGlucose;
-            // }
-            // if (savedSkinThickness != null) {
-            //     document.getElementById('SkinThickness').value = savedSkinThickness;
-            // }
-            // if (savedInsulin != null) {
-            //     document.getElementById('Insulin').value = savedInsulin;
-            // }
-            // if (savedBMI != null) {
-            //     document.getElementById('BMI').value = savedBMI;
-            // }
-            // if (savedDiabetesPedigreeFunction != null) {
-            //     document.getElementById('DiabetesPedigreeFunction').value = savedDiabetesPedigreeFunction;
-            // }
-            // if 
-            // if (savedAge != null) {
-            //     document.getElementById('Age').value = savedAge;
-            // }
+            if (savedPregnancies != null) {
+                document.getElementById('Pregnancies').value = savedPregnancies;
+            }
+            if (savedBloodPressure != null) {
+                document.getElementById('BloodPressure').value = savedBloodPressure;
+            }
+            if (savedGlucose != null) {
+                document.getElementById('Glucose').value = savedGlucose;
+            }
+            if (savedSkinThickness != null) {
+                document.getElementById('SkinThickness').value = savedSkinThickness;
+            }
+            if (savedInsulin != null) {
+                document.getElementById('Insulin').value = savedInsulin;
+            }
+            if (savedBMI != null) {
+                document.getElementById('BMI').value = savedBMI;
+            }
+            if (savedDiabetesPedigreeFunction != null) {
+                document.getElementById('DiabetesPedigreeFunction').value = savedDiabetesPedigreeFunction;
+            }
+            if (savedAge != null) {
+                document.getElementById('Age').value = savedAge;
+            }
         };
     </script>
 </body>
